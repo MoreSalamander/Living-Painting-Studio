@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Living Painting Studio — describe a world; watch it come alive</title>
+<meta name="description" content="Describe a scene in plain language; AI paints it; then the painting comes alive — fog drifts, creatures wander, light shifts with the time of day, seasons slowly turn. Not a video, not a screensaver: a living canvas you author and own." />
+<style>
+  :root {
+    --bg:#0a0c12; --panel:#12141d; --line:#252836; --ink:#ece8f2; --dim:#959ab0;
+    --accent:#2dd4bf; --accent2:#c084fc; --gold:#fbbf24; --red:#e0556b;
+    --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+  }
+  *{box-sizing:border-box;} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;}
+  a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
+  .wrap{max-width:840px;margin:0 auto;padding:0 22px 110px;}
+  header{padding:80px 0 36px;border-bottom:1px solid var(--line);background:radial-gradient(120% 90% at 50% -10%,rgba(45,212,191,.10),rgba(192,132,252,.06) 45%,transparent 70%);}
+  .kicker{font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+  h1{font-size:46px;line-height:1.05;margin:0 0 16px;letter-spacing:-1px;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  .lede{font-size:19px;color:var(--dim);max-width:680px;} .lede strong{color:var(--ink);font-weight:600;}
+  .tagline{font-family:var(--mono);color:var(--accent);font-size:14px;letter-spacing:1px;margin-top:20px;}
+  h2{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin:58px 0 6px;}
+  .h2sub{font-size:25px;font-weight:700;margin:0 0 16px;letter-spacing:-.5px;}
+  p{margin:0 0 16px;} .muted{color:var(--dim);} em{color:var(--ink);font-style:normal;border-bottom:1px dashed var(--dim);}
+  .callout{border-left:3px solid var(--accent2);background:rgba(192,132,252,.06);border-radius:0 12px 12px 0;padding:16px 20px;margin:22px 0;font-size:16px;} .callout strong{color:var(--ink);}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;} @media(max-width:640px){.grid{grid-template-columns:1fr;} h1{font-size:34px;}}
+  .card{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:var(--panel);} .card h4{margin:0 0 5px;font-size:15px;} .card p{font-size:13.5px;color:var(--dim);margin:0;}
+  .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0;} @media(max-width:640px){.tiers{grid-template-columns:1fr 1fr;}}
+  .tier{border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;background:var(--panel);} .tier .t{font-family:var(--mono);font-size:12px;color:var(--accent);} .tier .p{font-size:18px;font-weight:700;margin-top:4px;}
+  footer{margin-top:58px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--dim);}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="kicker">A MoreSalamander · StudioLabs production</div>
+  <h1>Living Painting Studio</h1>
+  <p class="lede">Describe a scene in plain language. AI paints it. Then the painting <strong>comes
+  alive</strong> — fog drifts, creatures wander, light shifts with the time of day, seasons slowly turn.
+  It never loops the same way twice. You're the author of a world, not just a prompt.</p>
+  <div class="tagline">Not a video. Not a screensaver. A living canvas.</div>
+</header>
+
+<h2>The core experience</h2>
+<div class="h2sub">A painting that breathes.</div>
+<p>You write a scene; the studio generates a beautiful still from it. Then a simulation layer brings that
+still to life — ambient particles, weather, autonomous creatures, and lighting that tracks the time of day
+and the turning seasons. The result is calm and never static: a world you set in motion and then simply
+live alongside.</p>
+<div class="callout">
+  <strong>You own the world, not the prompt.</strong> Tag elements, toggle their behavior, set the season,
+  speed, and weather in real time. The canvas is yours to tune and keep — a piece that keeps painting itself.
+</div>
+
+<h2>Under the canvas</h2>
+<div class="h2sub">A still image, then a living simulation on top.</div>
+<div class="grid">
+  <div class="card"><h4>Generate</h4><p>Your prompt becomes a base image via a hosted image model — the starting frame of the world.</p></div>
+  <div class="card"><h4>Particle layer</h4><p>Weather, drifting fog, fireflies, ambient motion — the atmosphere that makes it feel alive.</p></div>
+  <div class="card"><h4>Creature layer</h4><p>Simple autonomous creatures that wander the scene on their own, never the same path twice.</p></div>
+  <div class="card"><h4>Lighting layer</h4><p>Time-of-day and seasonal light shifts, so noon, dusk, and winter all read differently.</p></div>
+</div>
+
+<h2>A studio you subscribe to</h2>
+<div class="h2sub">Tiers for hobbyist to pro.</div>
+<div class="tiers">
+  <div class="tier"><div class="t">Free</div><div class="p">$0</div></div>
+  <div class="tier"><div class="t">Studio</div><div class="p">$9</div></div>
+  <div class="tier"><div class="t">Gallery</div><div class="p">$19</div></div>
+  <div class="tier"><div class="t">Pro</div><div class="p">$39</div></div>
+</div>
+<p class="muted">A Next.js app with Clerk accounts, Stripe billing, Supabase storage, a hosted image model,
+and a Canvas/WebGL simulation engine.</p>
+
+<footer>
+  Living Painting Studio — a MoreSalamander · StudioLabs production. &nbsp;|&nbsp;
+  <a href="https://moresalamander.github.io">The studio ↗</a> &nbsp;·&nbsp;
+  <a href="https://github.com/MoreSalamander/Living-Painting-Studio">GitHub ↗</a>
+  <br>Author a world, then watch it live.
+</footer>
+</div>
+</body>
+</html>

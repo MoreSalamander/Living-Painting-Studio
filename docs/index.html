@@ -4,36 +4,62 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Living Painting Studio — describe a world; watch it come alive</title>
-<meta name="description" content="Describe a scene in plain language; AI paints it; then the painting comes alive — fog drifts, creatures wander, light shifts with the time of day, seasons slowly turn. Not a video, not a screensaver: a living canvas you author and own." />
+<meta name="description" content="Describe a scene; AI paints it; then the painting comes alive — fog drifts, creatures wander, light shifts with the time of day, seasons turn. Not a video, not a screensaver: a living canvas you author and own." />
 <style>
   :root {
     --bg:#0a0c12; --panel:#12141d; --line:#252836; --ink:#ece8f2; --dim:#959ab0;
-    --accent:#2dd4bf; --accent2:#c084fc; --gold:#fbbf24; --red:#e0556b;
+    --accent:#2dd4bf; --accent2:#c084fc; --amber:#fbbf24; --blue:#38bdf8;
     --mono:ui-monospace,SFMono-Regular,Menlo,monospace; --sans:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
   }
   *{box-sizing:border-box;} body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);line-height:1.65;-webkit-font-smoothing:antialiased;}
   a{color:var(--accent);text-decoration:none;} a:hover{text-decoration:underline;}
-  .wrap{max-width:840px;margin:0 auto;padding:0 22px 110px;}
-  header{padding:80px 0 36px;border-bottom:1px solid var(--line);background:radial-gradient(120% 90% at 50% -10%,rgba(45,212,191,.10),rgba(192,132,252,.06) 45%,transparent 70%);}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px 110px;}
+  header{padding:74px 0 34px;border-bottom:1px solid var(--line);background:radial-gradient(120% 90% at 50% -10%,rgba(45,212,191,.11),rgba(192,132,252,.06) 45%,transparent 70%);}
+  .back{font-family:var(--mono);font-size:12px;color:var(--dim);text-decoration:none;display:inline-block;margin-bottom:16px;}
   .kicker{font-family:var(--mono);font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
-  h1{font-size:46px;line-height:1.05;margin:0 0 16px;letter-spacing:-1px;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+  h1{font-size:48px;line-height:1.04;margin:0 0 16px;letter-spacing:-1px;font-weight:800;background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
   .lede{font-size:19px;color:var(--dim);max-width:680px;} .lede strong{color:var(--ink);font-weight:600;}
   .tagline{font-family:var(--mono);color:var(--accent);font-size:14px;letter-spacing:1px;margin-top:20px;}
-  h2{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin:58px 0 6px;}
+  h2{font-size:13px;letter-spacing:1.5px;text-transform:uppercase;color:var(--accent);margin:60px 0 6px;}
   .h2sub{font-size:25px;font-weight:700;margin:0 0 16px;letter-spacing:-.5px;}
   p{margin:0 0 16px;} .muted{color:var(--dim);} em{color:var(--ink);font-style:normal;border-bottom:1px dashed var(--dim);}
+  code{font-family:var(--mono);font-size:.9em;color:var(--accent2);}
+  .runner{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:22px;margin:22px 0;}
+  .runbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+  .runbar .t{font-family:var(--mono);font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--dim);}
+  .runbar .st{font-family:var(--mono);font-size:12px;color:var(--accent);}
+  .canvas{position:relative;height:200px;border-radius:12px;overflow:hidden;border:1px solid var(--line);background:#0b0d14;}
+  .layer{position:absolute;inset:0;opacity:0;transition:opacity 1.1s ease;}
+  .layer.on{opacity:1;}
+  .l-base{background:linear-gradient(160deg,#1a2740,#26203a 60%,#3a2b46);}
+  .l-light{background:radial-gradient(80% 120% at 70% -10%,rgba(251,191,36,.22),transparent 55%);mix-blend-mode:screen;}
+  .l-particles{background-image:radial-gradient(1.5px 1.5px at 20% 30%,rgba(255,255,255,.7),transparent),radial-gradient(1.5px 1.5px at 60% 70%,rgba(45,212,191,.8),transparent),radial-gradient(1px 1px at 80% 40%,rgba(192,132,252,.8),transparent),radial-gradient(1.5px 1.5px at 40% 80%,rgba(255,255,255,.6),transparent),radial-gradient(1px 1px at 85% 75%,rgba(45,212,191,.7),transparent);}
+  .l-particles.on{animation:drift 6s linear infinite;}
+  @keyframes drift{from{background-position:0 0,0 0,0 0,0 0,0 0;}to{background-position:14px -20px,-18px 12px,10px 16px,-12px -14px,8px 10px;}}
+  .l-creature{}
+  .l-creature .c{position:absolute;width:7px;height:7px;border-radius:50%;background:var(--accent2);box-shadow:0 0 10px var(--accent2);}
+  .l-creature.on .c1{animation:wander1 9s ease-in-out infinite;} .l-creature.on .c2{animation:wander2 11s ease-in-out infinite;}
+  @keyframes wander1{0%{left:15%;top:60%}50%{left:65%;top:40%}100%{left:15%;top:60%}}
+  @keyframes wander2{0%{left:80%;top:30%}50%{left:35%;top:70%}100%{left:80%;top:30%}}
+  .stack{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px;}
+  .chip{font-family:var(--mono);font-size:11px;color:#5a5f72;border:1px solid var(--line);border-radius:7px;padding:6px 11px;transition:all .4s;}
+  .chip.on{color:var(--ink);border-color:var(--accent);background:rgba(45,212,191,.08);}
+  .chip.alive{color:var(--accent2);border-color:var(--accent2);}
+  .caption{font-size:12.5px;color:var(--dim);margin-top:14px;line-height:1.5;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:22px 0;} @media(max-width:640px){.grid{grid-template-columns:1fr;}}
+  .card{border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:var(--panel);} .card h4{margin:0 0 5px;font-size:15px;} .card p{font-size:13.5px;color:var(--dim);margin:0;}
   .callout{border-left:3px solid var(--accent2);background:rgba(192,132,252,.06);border-radius:0 12px 12px 0;padding:16px 20px;margin:22px 0;font-size:16px;} .callout strong{color:var(--ink);}
-  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0;} @media(max-width:640px){.grid{grid-template-columns:1fr;} h1{font-size:34px;}}
-  .card{border:1px solid var(--line);border-radius:12px;padding:15px 17px;background:var(--panel);} .card h4{margin:0 0 5px;font-size:15px;} .card p{font-size:13.5px;color:var(--dim);margin:0;}
   .tiers{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:20px 0;} @media(max-width:640px){.tiers{grid-template-columns:1fr 1fr;}}
   .tier{border:1px solid var(--line);border-radius:12px;padding:14px;text-align:center;background:var(--panel);} .tier .t{font-family:var(--mono);font-size:12px;color:var(--accent);} .tier .p{font-size:18px;font-weight:700;margin-top:4px;}
   footer{margin-top:58px;padding-top:24px;border-top:1px solid var(--line);font-family:var(--mono);font-size:12px;color:var(--dim);}
+  @media(max-width:640px){h1{font-size:34px;}}
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <header>
-  <a href="https://moresalamander.github.io" style="font-family:var(--mono);font-size:12px;color:var(--dim);text-decoration:none;display:inline-block;margin-bottom:16px">&larr; the studio</a>
+  <a class="back" href="https://moresalamander.github.io">&larr; the studio</a>
   <div class="kicker">A MoreSalamander · StudioLabs production</div>
   <h1>Living Painting Studio</h1>
   <p class="lede">Describe a scene in plain language. AI paints it. Then the painting <strong>comes
@@ -42,25 +68,50 @@
   <div class="tagline">Not a video. Not a screensaver. A living canvas.</div>
 </header>
 
-<h2>The core experience</h2>
+<h2>What it is</h2>
 <div class="h2sub">A painting that breathes.</div>
 <p>You write a scene; the studio generates a beautiful still from it. Then a simulation layer brings that
-still to life — ambient particles, weather, autonomous creatures, and lighting that tracks the time of day
-and the turning seasons. The result is calm and never static: a world you set in motion and then simply
-live alongside.</p>
-<div class="callout">
-  <strong>You own the world, not the prompt.</strong> Tag elements, toggle their behavior, set the season,
-  speed, and weather in real time. The canvas is yours to tune and keep — a piece that keeps painting itself.
+still to life — ambient particles, weather, autonomous creatures, lighting that tracks the time of day and
+the turning seasons. Calm, and never static: a world you set in motion and live alongside.</p>
+
+<h2>Watch it come alive</h2>
+<div class="h2sub">A still image, then a living simulation composited on top.</div>
+<div class="runner" id="runner">
+  <div class="runbar"><span class="t">living canvas · compositing</span><span class="st" id="state">generating…</span></div>
+  <div class="canvas">
+    <div class="layer l-base" data-l="base"></div>
+    <div class="layer l-light" data-l="light"></div>
+    <div class="layer l-particles" data-l="particles"></div>
+    <div class="layer l-creature" data-l="creatures"><span class="c c1"></span><span class="c c2"></span></div>
+  </div>
+  <div class="stack">
+    <span class="chip" data-c="base">base painting</span>
+    <span class="chip" data-c="particles">particle layer</span>
+    <span class="chip" data-c="creatures">creature layer</span>
+    <span class="chip" data-c="light">lighting layer</span>
+    <span class="chip" data-c="alive">living ∞</span>
+  </div>
+  <div class="caption">Each layer composites onto the last and then keeps moving on its own — no two moments
+  the same. This is <em>generate → simulate</em>: there's no verify gate here, and that's honest (see below).</div>
 </div>
 
 <h2>Under the canvas</h2>
-<div class="h2sub">A still image, then a living simulation on top.</div>
+<div class="h2sub">A base image, then living layers on top.</div>
 <div class="grid">
   <div class="card"><h4>Generate</h4><p>Your prompt becomes a base image via a hosted image model — the starting frame of the world.</p></div>
   <div class="card"><h4>Particle layer</h4><p>Weather, drifting fog, fireflies, ambient motion — the atmosphere that makes it feel alive.</p></div>
   <div class="card"><h4>Creature layer</h4><p>Simple autonomous creatures that wander the scene on their own, never the same path twice.</p></div>
   <div class="card"><h4>Lighting layer</h4><p>Time-of-day and seasonal light shifts, so noon, dusk, and winter all read differently.</p></div>
 </div>
+
+<h2>Why there's no gate here</h2>
+<div class="h2sub">An honest exception to the studio thesis.</div>
+<p>Most MoreSalamander projects wrap the model in a deterministic verifier — a gate that decides what's
+trustworthy. Living Painting Studio deliberately doesn't, and it'd be dishonest to pretend otherwise.</p>
+<div class="callout"><strong>The deliverable here is feel, not fact.</strong> There's nothing to ground a
+drifting fog or a wandering firefly <em>against</em> — its value is aesthetic and emergent, and the only
+valid judge of "is this beautiful" is you. So this is the studio's <em>generative</em> side: the rigor is in
+the experience and the ownership, not a pass/fail gate.</div>
 
 <h2>A studio you subscribe to</h2>
 <div class="h2sub">Tiers for hobbyist to pro.</div>
@@ -76,9 +127,30 @@ and a Canvas/WebGL simulation engine.</p>
 <footer>
   Living Painting Studio — a MoreSalamander · StudioLabs production. &nbsp;|&nbsp;
   <a href="https://moresalamander.github.io">The studio ↗</a> &nbsp;·&nbsp;
+  <a href="https://moresalamander.github.io/projects.html">All projects ↗</a> &nbsp;·&nbsp;
   <a href="https://github.com/MoreSalamander/Living-Painting-Studio">GitHub ↗</a>
   <br>Author a world, then watch it live.
 </footer>
 </div>
+
+<script>
+(function(){
+  const layers=[...document.querySelectorAll('.layer')], chips=[...document.querySelectorAll('.chip')];
+  const state=document.getElementById('state');
+  const layer=l=>layers.find(x=>x.dataset.l===l), chip=c=>chips.find(x=>x.dataset.c===c);
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const reduced=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const F=reduced?0.15:1;
+  const seq=[['base','base painting'],['particles','weather + particles'],['creatures','creatures wake'],['light','light shifts in']];
+  async function loop(){while(true){
+    layers.forEach(l=>l.classList.remove('on')); chips.forEach(c=>c.classList.remove('on','alive'));
+    state.textContent='generating…'; await sleep(900*F);
+    for(const [l,label] of seq){ state.textContent=label; layer(l).classList.add('on'); chip(l).classList.add('on'); await sleep(1100*F); }
+    state.textContent='living ∞'; chip('alive').classList.add('on','alive');
+    await sleep(reduced?1200:6500);
+  }}
+  loop();
+})();
+</script>
 </body>
 </html>
